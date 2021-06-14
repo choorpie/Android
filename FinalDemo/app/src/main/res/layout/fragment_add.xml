@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintVertical_chainStyle="spread"
+        tools:context=".AddFragment">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add a new hotel"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.052"
+            tools:layout_editor_absoluteX="114dp" />
+
+        <EditText
+            android:id="@+id/city_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:ems="10"
+            android:hint="City"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.144"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <EditText
+            android:id="@+id/name_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:ems="10"
+            android:hint="Name"
+            android:inputType="textPersonName"
+            app:layout_constraintStart_toStartOf="@+id/city_edit"
+            app:layout_constraintTop_toBottomOf="@+id/city_edit" />
+
+        <EditText
+            android:id="@+id/descript_edit"
+            android:layout_width="341dp"
+            android:layout_height="47dp"
+            android:layout_marginTop="60dp"
+            android:ems="10"
+            android:hint="Description"
+            android:inputType="textMultiLine|textPersonName"
+            app:layout_constraintStart_toStartOf="@+id/sel_button"
+            app:layout_constraintTop_toBottomOf="@+id/sel_button" />
+
+        <Button
+            android:id="@+id/sel_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
+            android:text="Select a photo"
+            app:layout_constraintStart_toStartOf="@+id/name_edit"
+            app:layout_constraintTop_toBottomOf="@+id/name_edit" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
