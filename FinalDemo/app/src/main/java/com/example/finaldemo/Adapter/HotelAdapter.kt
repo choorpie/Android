@@ -89,9 +89,9 @@ fun ImageView.setSceneImage(hotel: Hotel?) {
 @BindingAdapter("android:src")
 fun ImageView.setImageResource(hotel: Hotel?) {
     hotel?.let {
-        if (hotel.photoFile.isNotEmpty()) {
+        if (hotel.fileMap.isNotEmpty()) {
             Glide.with(this.context)
-                    .load(Uri.parse(hotel.photoFile))
+                    .load(Uri.parse(hotel.fileMap))
                     .apply(RequestOptions().centerCrop())
                     .into(this)
         } else {

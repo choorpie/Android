@@ -19,6 +19,7 @@ class AddFragment : Fragment() {
     private lateinit var viewModel: MyViewModel
     private var newHotel = Hotel("", "", 0, "", 0, "")
     val PICKUPIMAGE = 1
+    val PICKUPMAP = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,11 +36,20 @@ class AddFragment : Fragment() {
                 MyViewModelFactory(requireActivity().application)).get(MyViewModel::class.java)
 
         //enable the photo pickup
-        binding.selButton.setOnClickListener {
-            val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
-            intent.addCategory(Intent.CATEGORY_OPENABLE)
-            intent.type = "image/*"
-            startActivityForResult(intent, PICKUPIMAGE)
+        binding.selPhotoButton.setOnClickListener {
+            val photo_intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+            photo_intent.addCategory(Intent.CATEGORY_OPENABLE)
+            photo_intent.type = "image/*"
+            startActivityForResult(photo_intent, PICKUPIMAGE)
+//            this.startActivity(photo_intent)
+        }
+
+        //enable the map pickup
+        binding.selMapButton.setOnClickListener {
+            val map_intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+            map_intent.addCategory(Intent.CATEGORY_OPENABLE)
+            map_intent.type = "image/*"
+            startActivityForResult(map_intent, PICKUPMAP)
         }
 
         setHasOptionsMenu(true)
@@ -50,6 +60,8 @@ class AddFragment : Fragment() {
         newHotel.city = binding.cityEdit.text.toString()
         newHotel.name = binding.nameEdit.text.toString()
         newHotel.description = binding.descriptEdit.text.toString()
+        newHotel.phoneNumber = binding.phoneNuberEdit.text.toString()
+//        newHotel.mapId
         viewModel.insertHotel(newHotel)
         activity?.onBackPressed()  //simulate the press of the back button
     }
@@ -61,6 +73,13 @@ class AddFragment : Fragment() {
                 if (resultCode == Activity.RESULT_OK && data != null) {
                     data.data?.let {
                         newHotel.photoFile = it.toString()
+                    }
+                }
+            }
+            PICKUPMAP -> {
+                if (resultCode == Activity.RESULT_OK && data != null) {
+                    data.data?.let {
+                        newHotel.fileMap = it.toString()
                     }
                 }
             }

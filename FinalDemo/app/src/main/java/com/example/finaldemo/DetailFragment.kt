@@ -1,5 +1,7 @@
 package com.example.finaldemo
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -52,6 +54,13 @@ class DetailFragment : Fragment(){
             binding.hotel = it
 //            binding.mapImage.setImageResource(args.rawId)
         })
+
+        //enable the phone dialer
+        binding.phoneNumber.setOnClickListener {
+            val phoneNumber = binding.phoneNumber.text.toString().trim()
+            val phone_intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNumber))
+            startActivity(phone_intent)
+        }
 
         // rate it button
         binding.rateButton.setOnClickListener(){

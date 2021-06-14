@@ -12,9 +12,10 @@ data class Hotel (
     var photoId: Int,
     var description: String,
     var mapId: Int,
-    var phoneNuber: String
+    var phoneNumber: String
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0L
     var photoFile: String = ""  //for the external photo file
+    var fileMap: String = ""
 }
