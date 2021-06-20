@@ -34,29 +34,44 @@ class RateFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        var display = 0
 
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_rate, container, false)
+
+        //shared viewmodel with the activity
+        viewModel = ViewModelProvider(requireActivity(),
+            MyViewModelFactory(requireActivity().application)).get(MyViewModel::class.java)
 
         //retrieve the database dao
         val application = requireNotNull(this.activity).application
         val dataSource = HotelDatabase.getInstance(application).hotelDatabaseDao
 
-        //shared viewmodel with the activity
-        viewModel = ViewModelProvider(requireActivity(),
-                MyViewModelFactory(requireActivity().application)).get(MyViewModel::class.java)
+        val args = RateFragmentArgs.fromBundle(requireArguments())
 
+        binding.imageView.setOnClickListener {
+            display = 1
+            it.findNavController()
+                .navigate(RateFragmentDirections.actionRateFragmentToDetailFragment(args.rawId, display))
+        }
 
-//        //set an observer to the liveData and hence update the UI
-//        viewModel.selectedHotel.observe(viewLifecycleOwner, Observer {
-//            //do data binding in the layout
-//            binding.hotel = it
-//        })
+        binding.imageView2.setOnClickListener {
+            display = 2
+            it.findNavController()
+                .navigate(RateFragmentDirections.actionRateFragmentToDetailFragment(args.rawId, display))
+        }
 
-//        binding.imageView.setOnClickListener{
-//            this.findNavController()
-//                .navigate(RateFragmentDirections.actionRateFragmentToListFragment())
-//        }
+        binding.imageView3.setOnClickListener {
+            display = 3
+            it.findNavController()
+                .navigate(RateFragmentDirections.actionRateFragmentToDetailFragment(args.rawId, display))
+        }
+
+        binding.imageView0.setOnClickListener {
+            display = 0
+            it.findNavController()
+                .navigate(RateFragmentDirections.actionRateFragmentToDetailFragment(args.rawId, display))
+        }
 
         return binding.root
     }

@@ -3,6 +3,7 @@ package com.example.finaldemo
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.Display
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -35,6 +36,8 @@ class DetailFragment : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
 
+        val display = false
+
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail, container, false)
 
         //retrieve the database dao
@@ -44,6 +47,7 @@ class DetailFragment : Fragment(){
         //shared viewmodel with the activity
         viewModel = ViewModelProvider(requireActivity(),
                 MyViewModelFactory(requireActivity().application)).get(MyViewModel::class.java)
+
         //retrieve the passed argument (selected hotel's id from the recyclerview)
         val args = DetailFragmentArgs.fromBundle(requireArguments())
         viewModel.getHotel(args.rawId)
@@ -65,7 +69,7 @@ class DetailFragment : Fragment(){
         // rate it button
         binding.rateButton.setOnClickListener(){
             it.findNavController()
-                .navigate(DetailFragmentDirections.actionDetailFragmentToRateFragment())
+                .navigate(DetailFragmentDirections.actionDetailFragmentToRateFragment(args.rawId, args.displayImg))
         }
 
         // map it button
@@ -77,11 +81,20 @@ class DetailFragment : Fragment(){
                 .navigate(DetailFragmentDirections.actionDetailFragmentToMapsFragment(passedHotel.name, passedHotel.name))
         }
 
+        when(args.displayImg){
+            1 -> binding.icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_sentiment_very_satisfied_black_24dp))
+            2 -> binding.icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_sentiment_dissatisfied_black_24dp))
+            3 -> binding.icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_mood_bad_black_24dp))
+            0 -> binding.icon.visibility = View.INVISIBLE
+        }
+
 //        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
 //        val mapFragment = getFragmentManager()?.findFragmentById(R.id.map) as SupportMapFragment
 //        mapFragment.getMapAsync(this)
 
         return binding.root
     }
+
+
 
 }

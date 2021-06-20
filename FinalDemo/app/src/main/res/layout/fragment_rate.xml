@@ -7,37 +7,37 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center"
+        >
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="@dimen/rate_icon_size"
             android:layout_height="@dimen/rate_icon_size"
-            android:src="@drawable/emoji_love" />
+            android:layout_margin="20dp"
+            android:src="@drawable/ic_sentiment_very_satisfied_black_24dp" />
 
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="@dimen/rate_icon_size"
             android:layout_height="@dimen/rate_icon_size"
-            android:src="@drawable/emoji_cool" />
+            android:layout_margin="20dp"
+            android:src="@drawable/ic_sentiment_dissatisfied_black_24dp" />
 
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="@dimen/rate_icon_size"
             android:layout_height="@dimen/rate_icon_size"
-            android:src="@drawable/emoji_happy" />
+            android:layout_margin="20dp"
+            android:src="@drawable/ic_mood_bad_black_24dp" />
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/imageView0"
             android:layout_width="@dimen/rate_icon_size"
             android:layout_height="@dimen/rate_icon_size"
-            android:src="@drawable/emoji_sad" />
-
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="@dimen/rate_icon_size"
-            android:layout_height="@dimen/rate_icon_size"
-            android:src="@drawable/emoji_angry" />
+            android:layout_margin="20dp"
+            android:src="@drawable/ic_cancel_black_24dp" />
 
     </LinearLayout>
 </layout>

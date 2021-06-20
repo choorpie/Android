@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AboutFragment">
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/ic_cb390b40182f7ea9e1c36100aefb62e4" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="去自助旅遊就要瀏覽我們優惠價格的平價飯店，通過我們的飯店搜尋功能，找到最適合您的房間；不論您想到哪裡自助旅遊/旅行，本 APP 都可以為您提供便宜飯店、住宿優惠情報；網上查看和預訂更多住宿優惠。用 App 預訂即可揭開神秘優惠價." />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:textSize="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="120dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="italic"
+        android:text="*價格會視您日後的預訂而有所改變，且受 Hotels.com™ Rewards 條款和條件的規範。根據 2019 年全球會員獎勵住宿總價值計算平均值，且不包含稅金和其他費用 (須由會員另外支付)。" />
+
+</LinearLayout>

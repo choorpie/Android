@@ -72,7 +72,6 @@ class ListFragment : Fragment() {
         // Initialize Search View
         searchView = menu?.findItem(R.id.searchView)?.actionView as SearchView
         searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
-
             override fun onQueryTextSubmit(newText: String?): Boolean {
                 context?.hideKeyboard()
                 return true
@@ -93,8 +92,6 @@ class ListFragment : Fragment() {
             }
         })
     }
-
-
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return NavigationUI.

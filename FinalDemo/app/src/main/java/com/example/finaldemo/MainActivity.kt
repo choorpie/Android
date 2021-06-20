@@ -2,6 +2,7 @@ package com.example.finaldemo
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.location.LocationManager
 import android.os.Bundle
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity

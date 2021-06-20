@@ -44,7 +44,7 @@ class HotelAdapter(val view: Context, val viewModel: MyViewModel) : ListAdapter<
             val rawId = getItem(viewHolder.bindingAdapterPosition).id
             //pass the id to the detailfragment
             it.findNavController()
-                .navigate(ListFragmentDirections.actionListFragmentToDetailFragment(rawId))
+                .navigate(ListFragmentDirections.actionListFragmentToDetailFragment(rawId, 0))
         }
         return viewHolder
     }
