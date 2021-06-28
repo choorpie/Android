@@ -16,6 +16,8 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.finaldemo.databinding.FragmentMapsBinding
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -36,6 +38,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback{
     private lateinit var args: MapsFragmentArgs
     val TAG = "MapsFragment"
     var placeNameList = arrayOf("ATM","Bank","Hospital","Movie Theater","Restaurant")
+    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -56,6 +59,12 @@ class MapsFragment : Fragment(), OnMapReadyCallback{
         // Set adapter on spinner
         val adapter = activity?.let { ArrayAdapter(it, R.layout.support_simple_spinner_dropdown_item, placeNameList) }
         binding.spType.adapter = adapter
+        // Initialize fused location provider client
+        fusedLocationProviderClient = activity?.let {
+            LocationServices.getFusedLocationProviderClient(
+                it
+            )
+        }!!
 
         return binding.root
     }
