@@ -15,6 +15,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import com.example.finaldemo.Adapter.PlacesDTO
 import com.example.finaldemo.databinding.FragmentMapsBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -37,6 +38,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback{
     private lateinit var mMap: GoogleMap
     private lateinit var args: MapsFragmentArgs
     val TAG = "MapsFragment"
+    var placeTypeList = arrayOf("ATM","Bank","Hospital","Movie Theater","Restaurant")
     var placeNameList = arrayOf("ATM","Bank","Hospital","Movie Theater","Restaurant")
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
 
@@ -92,6 +94,24 @@ class MapsFragment : Fragment(), OnMapReadyCallback{
             val local_location = LatLng(23.897532369370133, 121.54138184279184)
             mMap.addMarker(MarkerOptions().position(local_location).title("NDHU"))
 
+            binding.btFind.setOnClickListener{
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15f))
+                // Get selected position of spinner
+                var i = binding.spType.selectedItemPosition
+                Log.i("qwer", i.toString())
+                Log.i("placeTypeList", placeTypeList[i])
+                // Initialize url
+                val url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json" + // url
+                "?location=" + addressList[0].latitude + "," + addressList[0].longitude + // Location latitude and longitude
+                "&radius=5000" + // Nearby radius
+                "&types=" + placeTypeList[i] + // Place type
+                "&sensor=true" + // Sensor
+                "&key=AIzaSyAafNXUFM-tN-D5pIRjYCIeeKxyjahpepw"
+
+                // Execute place task method to download json data
+                PlaceTask(url).execute()
+            }
+
             val URL = getDirectionURL(local_location, location)
             Log.i("past", URL)
             GetDirection(URL).execute()
@@ -101,6 +121,46 @@ class MapsFragment : Fragment(), OnMapReadyCallback{
 
     fun getDirectionURL(origin:LatLng,dest:LatLng): String{
         return "https://maps.googleapis.com/maps/api/directions/json?origin=${origin.latitude},${origin.longitude}&destination=${dest.latitude},${dest.longitude}&key=AIzaSyAafNXUFM-tN-D5pIRjYCIeeKxyjahpepw"
+    }
+
+        inner class PlaceTask(val url: String) : AsyncTask<Void,Void,List<List<LatLng>>>(){
+        override fun doInBackground(vararg p0: Void?): List<List<LatLng>> {
+            val client = OkHttpClient()
+            val request = Request.Builder().url(url).build()
+            val response = client.newCall(request).execute()
+            val data = response.body?.string()
+//            Log.i("now", data)
+            val result = ArrayList<List<LatLng>>()
+            try {
+                Log.i("now", data)
+                val respObjSearch = Gson().fromJson(data, PlacesDTO::class.java)
+                val pathSearch = ArrayList<LatLng>()
+                val options = MarkerOptions()
+                var latitude = ""
+                var longitude = ""
+                for (i in 0..(respObjSearch.results.size - 1)){
+//                    Toast.makeText(this@MapsFragment.activity, i.toString(), Toast.LENGTH_SHORT).show()
+                    Log.i("asdf", respObjSearch.results[i].geometry.get("viewport").toString())
+                    val latLngSearch = LatLng(respObjSearch.results[i].geometry?.get("viewport")?.lat?.toDouble()!!
+                        , respObjSearch.results[i].geometry?.get("viewport")?.lng?.toDouble()!!
+                    )
+
+//                    Log.i("hi", latLngSearch.toString())
+//                    options.position(latLngSearch)
+//                    mMap.addMarker(options)
+
+//                    mMap.addMarker(MarkerOptions().position(latLng).title("123"))
+//                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
+//                    pathSearch.add(latLng)
+                }
+                Log.i("path", pathSearch.toString())
+                result.add(pathSearch)
+                Log.i("wass", result.toString())
+            }catch (e:Exception){
+                e.printStackTrace()
+            }
+            return result
+        }
     }
 
     inner class GetDirection(val url: String) : AsyncTask<Void, Void, List<List<LatLng>>>(){
