@@ -5,7 +5,6 @@ import android.graphics.Color
 import android.location.Address
 import android.location.Geocoder
 import android.os.AsyncTask
-import android.os.Build
 import androidx.fragment.app.Fragment
 
 import android.os.Bundle
@@ -17,16 +16,12 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.finaldemo.databinding.FragmentMapsBinding
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationRequest
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.PolylineOptions
 import com.google.gson.Gson
@@ -40,20 +35,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback{
     private lateinit var mMap: GoogleMap
     private lateinit var args: MapsFragmentArgs
     val TAG = "MapsFragment"
-    // Initialize array of place name
-    var placeNameList = "ATM,Bank,Hospital,Movie Theater,Restaurant".split(",").toTypedArray()
-
-    private var latitude: Double=0.toDouble()
-    private var longitude: Double=0.toDouble()
-
-    private lateinit var mLastLocation: Location
-    private var mMarker: Marker?=null
-
-    // Location
-    lateinit var fusedLocationProviderClient: FusedLocationProviderClient
-    lateinit var locationRequest: LocationRequest
-    lateinit var locationCallback: LocationCallback
-
+    var placeNameList = arrayOf("ATM","Bank","Hospital","Movie Theater","Restaurant")
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -72,7 +54,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback{
         mapFragment?.getMapAsync(this)
 
         // Set adapter on spinner
-        val adapter = activity?.let { ArrayAdapter<String>(it, R.layout.support_simple_spinner_dropdown_item, placeNameList) }
+        val adapter = activity?.let { ArrayAdapter(it, R.layout.support_simple_spinner_dropdown_item, placeNameList) }
         binding.spType.adapter = adapter
 
         return binding.root
