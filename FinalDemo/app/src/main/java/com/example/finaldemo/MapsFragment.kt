@@ -110,6 +110,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback{
 
                 // Execute place task method to download json data
                 PlaceTask(url).execute()
+
             }
 
             val URL = getDirectionURL(local_location, location)
@@ -123,6 +124,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback{
         return "https://maps.googleapis.com/maps/api/directions/json?origin=${origin.latitude},${origin.longitude}&destination=${dest.latitude},${dest.longitude}&key=AIzaSyAafNXUFM-tN-D5pIRjYCIeeKxyjahpepw"
     }
 
+
         inner class PlaceTask(val url: String) : AsyncTask<Void,Void,List<List<LatLng>>>(){
         override fun doInBackground(vararg p0: Void?): List<List<LatLng>> {
             val client = OkHttpClient()
@@ -131,27 +133,28 @@ class MapsFragment : Fragment(), OnMapReadyCallback{
             val data = response.body?.string()
 //            Log.i("now", data)
             val result = ArrayList<List<LatLng>>()
+            val pathSearch = ArrayList<LatLng>()
             try {
                 Log.i("now", data)
                 val respObjSearch = Gson().fromJson(data, PlacesDTO::class.java)
-                val pathSearch = ArrayList<LatLng>()
-                val options = MarkerOptions()
-                var latitude = ""
-                var longitude = ""
+//                val pathSearch = ArrayList<LatLng>()
                 for (i in 0..(respObjSearch.results.size - 1)){
 //                    Toast.makeText(this@MapsFragment.activity, i.toString(), Toast.LENGTH_SHORT).show()
-                    Log.i("asdf", respObjSearch.results[i].geometry.get("viewport").toString())
-                    val latLngSearch = LatLng(respObjSearch.results[i].geometry?.get("viewport")?.lat?.toDouble()!!
-                        , respObjSearch.results[i].geometry?.get("viewport")?.lng?.toDouble()!!
+                    Log.i("asdf", respObjSearch.results[i].geometry.get("location")?.lat.toString())
+                    val latLngSearch = LatLng(respObjSearch.results[i].geometry?.get("location")?.lat?.toDouble()!!
+                        , respObjSearch.results[i].geometry?.get("location")?.lng?.toDouble()!!
                     )
 
-//                    Log.i("hi", latLngSearch.toString())
-//                    options.position(latLngSearch)
-//                    mMap.addMarker(options)
+                    Log.i("qwer", latLngSearch.toString())
+//                    mMap.addMarker(MarkerOptions().position(latLngSearch).title("123"))
 
-//                    mMap.addMarker(MarkerOptions().position(latLng).title("123"))
 //                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
-//                    pathSearch.add(latLng)
+                    pathSearch.add(latLngSearch)
+                }
+                activity?.runOnUiThread{
+                    for (i in 0..pathSearch.size-1){
+                        mMap.addMarker(MarkerOptions().position(pathSearch[i]).title(i.toString()))
+                    }
                 }
                 Log.i("path", pathSearch.toString())
                 result.add(pathSearch)
