@@ -52,11 +52,11 @@ class BookFragment : Fragment() {
         binding.dateIn.setOnClickListener {
             context?.hideKeyboard()
             val dpd = DatePickerDialog(requireContext(), DatePickerDialog.OnDateSetListener{ view, mYear, mMonth, mDay ->
-
                 // set to textView
-                binding.dateIn.setText("" + mDay + " / " + mMonth + " / " + mYear)
+                binding.dateIn.setText("" + mYear + " / " + mMonth + " / " + mDay)
                 Log.i("now", mMonth.toString())
             }, year, month+1, day)
+            dpd.datePicker
             // show dialog
             dpd.show()
         }
@@ -68,7 +68,7 @@ class BookFragment : Fragment() {
             val dayOut = day
             val dpd = DatePickerDialog(requireContext(), DatePickerDialog.OnDateSetListener{ view, mYear, mMonth, mDay ->
                 // set to textView
-                binding.dateOut.setText("" + mDay + " / " + mMonth + " / " + mYear)
+                binding.dateOut.setText("" + mYear + " / " + mMonth + " / " + mDay)
                 Log.i("now", mMonth.toString())
             }, year, month+1, day)
             // show dialog

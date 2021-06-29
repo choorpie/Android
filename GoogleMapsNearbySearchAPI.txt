@@ -1,0 +1,402 @@
+{
+   "geocoded_waypoints" : [
+      {
+         "geocoder_status" : "OK",
+         "place_id" : "ChIJg3XXhNrX3IARUc0M9bIC_X4",
+         "types" : [ "amusement_park", "establishment", "point_of_interest" ]
+      },
+      {
+         "geocoder_status" : "OK",
+         "place_id" : "ChIJzzgyJU--woARcZqceSdQ3dM",
+         "types" : [
+            "amusement_park",
+            "establishment",
+            "point_of_interest",
+            "tourist_attraction"
+         ]
+      }
+   ],
+   "routes" : [
+      {
+         "bounds" : {
+            "northeast" : {
+               "lat" : 34.1358593,
+               "lng" : -117.9220029
+            },
+            "southwest" : {
+               "lat" : 33.80357559999999,
+               "lng" : -118.3517026
+            }
+         },
+         "copyrights" : "Map data ©2021",
+         "legs" : [
+            {
+               "distance" : {
+                  "text" : "36.4 英里",
+                  "value" : 58636
+               },
+               "duration" : {
+                  "text" : "47 分鐘",
+                  "value" : 2793
+               },
+               "end_address" : "100 Universal City Plaza, Universal City, CA 91608美國",
+               "end_location" : {
+                  "lat" : 34.1358593,
+                  "lng" : -118.3511633
+               },
+               "start_address" : "Disneyland Dr, Anaheim, CA 92802美國",
+               "start_location" : {
+                  "lat" : 33.80545170000001,
+                  "lng" : -117.9242185
+               },
+               "steps" : [
+                  {
+                     "distance" : {
+                        "text" : "0.4 英里",
+                        "value" : 609
+                     },
+                     "duration" : {
+                        "text" : "2 分鐘",
+                        "value" : 149
+                     },
+                     "end_location" : {
+                        "lat" : 33.8054699,
+                        "lng" : -117.9267488
+                     },
+                     "html_instructions" : "往\u003cb\u003e西\u003c/b\u003e朝\u003cb\u003eDisneyland Dr\u003c/b\u003e前進",
+                     "polyline" : {
+                        "points" : "asimEjawnU?b@@H@H@FBFBDDBD@D@F?F?`AIdBOH?v@?J@JDFBFDFDFFBHDJ@H@J?J?^?`@@^?`@At@?^A`@?`@?^A^C@C@gE?eC@I@"
+                     },
+                     "start_location" : {
+                        "lat" : 33.80545170000001,
+                        "lng" : -117.9242185
+                     },
+                     "travel_mode" : "DRIVING"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "39 英尺",
+                        "value" : 12
+                     },
+                     "duration" : {
+                        "text" : "1 分鐘",
+                        "value" : 3
+                     },
+                     "end_location" : {
+                        "lat" : 33.80546229999999,
+                        "lng" : -117.9268759
+                     },
+                     "html_instructions" : "向\u003cb\u003e左\u003c/b\u003e轉",
+                     "maneuver" : "turn-left",
+                     "polyline" : {
+                        "points" : "esimEdqwnU@X"
+                     },
+                     "start_location" : {
+                        "lat" : 33.8054699,
+                        "lng" : -117.9267488
+                     },
+                     "travel_mode" : "DRIVING"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "0.1 英里",
+                        "value" : 224
+                     },
+                     "duration" : {
+                        "text" : "1 分鐘",
+                        "value" : 56
+                     },
+                     "end_location" : {
+                        "lat" : 33.8036491,
+                        "lng" : -117.9265759
+                     },
+                     "html_instructions" : "向\u003cb\u003e左\u003c/b\u003e轉",
+                     "maneuver" : "turn-left",
+                     "polyline" : {
+                        "points" : "csimE~qwnUrDAfDAB?@A@A@C@C@C?g@"
+                     },
+                     "start_location" : {
+                        "lat" : 33.80546229999999,
+                        "lng" : -117.9268759
+                     },
+                     "travel_mode" : "DRIVING"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "0.2 英里",
+                        "value" : 355
+                     },
+                     "duration" : {
+                        "text" : "1 分鐘",
+                        "value" : 58
+                     },
+                     "end_location" : {
+                        "lat" : 33.80514,
+                        "lng" : -117.9245556
+                     },
+                     "html_instructions" : "靠\u003cb\u003e右\u003c/b\u003e",
+                     "maneuver" : "keep-right",
+                     "polyline" : {
+                        "points" : "ygimEbpwnUDYDaBB[?kDAQ?MCICICICGAACAGCEEGEEEGCECGAGAIAG?o@?O?O@eCZ"
+                     },
+                     "start_location" : {
+                        "lat" : 33.8036491,
+                        "lng" : -117.9265759
+                     },
+                     "travel_mode" : "DRIVING"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "200 英尺",
+                        "value" : 61
+                     },
+                     "duration" : {
+                        "text" : "1 分鐘",
+                        "value" : 16
+                     },
+                     "end_location" : {
+                        "lat" : 33.8053786,
+                        "lng" : -117.9240937
+                     },
+                     "html_instructions" : "繼續直行",
+                     "maneuver" : "straight",
+                     "polyline" : {
+                        "points" : "cqimEncwnUK?E?GAECCCCECEAGAI?G?]?O"
+                     },
+                     "start_location" : {
+                        "lat" : 33.80514,
+                        "lng" : -117.9245556
+                     },
+                     "travel_mode" : "DRIVING"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "1.1 英里",
+                        "value" : 1819
+                     },
+                     "duration" : {
+                        "text" : "3 分鐘",
+                        "value" : 195
+                     },
+                     "end_location" : {
+                        "lat" : 33.8207878,
+                        "lng" : -117.9230963
+                     },
+                     "html_instructions" : "於\u003cb\u003eDisneyland Dr\u003c/b\u003e向\u003cb\u003e左\u003c/b\u003e轉",
+                     "maneuver" : "turn-left",
+                     "polyline" : {
+                        "points" : "srimEp`wnU?WO?O?mD@q@?iA?O?oC?eA?cB@gA?gA?gA?aB@m@?U@O?O@mBPaCPSBM?gB@W?mB@_A?O@KAK?KAMCMAMEOEOEGEEAQKGEKGQOQSOQMSIO?AIOGQSc@ACUi@MWIMGIIKMOKKMIGEGEe@Go@Qw@QOCmAQE?WCa@?S?W?YBU@K@u@D_@Bk@HA?UFKBa@JuCp@{@T_@LYLKJUJc@LEBeAX"
+                     },
+                     "start_location" : {
+                        "lat" : 33.8053786,
+                        "lng" : -117.9240937
+                     },
+                     "travel_mode" : "DRIVING"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "2.6 英里",
+                        "value" : 4183
+                     },
+                     "duration" : {
+                        "text" : "2 分鐘",
+                        "value" : 149
+                     },
+                     "end_location" : {
+                        "lat" : 33.8437993,
+                        "lng" : -117.9557998
+                     },
+                     "html_instructions" : "靠\u003cb\u003e右\u003c/b\u003e行駛，走\u003cb\u003eI-5 N\u003c/b\u003e，朝\u003cb\u003eLos Angeles\u003c/b\u003e前進",
+                     "maneuver" : "ramp-right",
+                     "polyline" : {
+                        "points" : "}rlmEjzvnUi@MICEASIcA]{@[C?SGSGMEMEC?KCSAEAMAO?E?]@C?E@E?MBE@I@IBKBA@UJE@EBIDGDKF{AtAs@l@y@r@y@r@_At@WTs@l@qAjA_@\\]p@}ApAg@b@iAdA}BbCSTYXw@z@[ZyB`Cs@v@ST]^CDyBdCw@x@qBtB}@~@_AbA{@|@s@x@KLEBEDSPGF_BhCa@r@Wh@Wf@Sf@c@jAOb@K^ITW`AMd@_@xAWnAU`Bm@jEi@`Eu@hFOv@GXWlAMh@e@|AM`@M^KX{@vBuAzCSd@aGrMwDvISd@aEjJgB|DsBtEaF~KMVm@rAWn@i@jAg@fA[p@[l@aAdBe@x@"
+                     },
+                     "start_location" : {
+                        "lat" : 33.8207878,
+                        "lng" : -117.9230963
+                     },
+                     "travel_mode" : "DRIVING"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "4.8 英里",
+                        "value" : 7776
+                     },
+                     "duration" : {
+                        "text" : "5 分鐘",
+                        "value" : 277
+                     },
+                     "end_location" : {
+                        "lat" : 33.8823716,
+                        "lng" : -118.0255065
+                     },
+                     "html_instructions" : "靠\u003cb\u003e左\u003c/b\u003e以繼續行駛\u003cb\u003eI-5 N\u003c/b\u003e",
+                     "maneuver" : "keep-left",
+                     "polyline" : {
+                        "points" : "wbqmEvf}nUm@fA}@|AQZYd@[h@U`@QZ[l@c@|@_@v@{@rBUn@m@~AEHs@lBk@|AsB~EaC~F_A`C_@~@Uf@[t@aChGQf@{CjHyAjDiAhCoAxCmDhIkApCkAdCEFoA|B_@j@Yf@gA~Aa@l@g@p@W^a@j@GHgAtAu@dAiCpDY\\aB|Be@z@?@A@IPKRA@?@GJSd@_@~@Qh@Qh@WdAADAFGZYrA[xAId@GREVSbAU~@k@vB[lACF_AzE?@YlAMl@ADWbAOn@}@hCQh@k@~AcB~DYp@Wh@INgAzBc@x@QZgBzC_BpC[f@c@t@a@p@qB`ESb@ABQ^g@fASb@Sf@c@`AoAtCe@fAaBtDg@hAy@jBsAbD}@nBOZKV]v@oArCSb@Q`@?@Sb@aBpDi@hAy@lBKVsAnCABGHGNINEJCJGJGRc@`A[t@c@`AoAlCmBjEMZ]t@_@z@w@bBe@|@c@r@OTOTA@SZCBc@r@a@h@g@n@e@j@Y^QRkAfAy@t@y@v@oBfCi@v@W^g@v@[d@s@jACDa@n@IJABSZ{@xAmAzB_CrFeAnCYz@Wz@ENKXoAzDeB|E]`ACHELITGNYx@ENKTkApCe@fAOZ}@rB{@lBQb@Yp@}@rBaAzBIN?B]t@Sb@u@fBiBdE"
+                     },
+                     "start_location" : {
+                        "lat" : 33.8437993,
+                        "lng" : -117.9557998
+                     },
+                     "travel_mode" : "DRIVING"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "12.6 英里",
+                        "value" : 20356
+                     },
+                     "duration" : {
+                        "text" : "12 分鐘",
+                        "value" : 748
+                     },
+                     "end_location" : {
+                        "lat" : 34.0151967,
+                        "lng" : -118.1701571
+                     },
+                     "html_instructions" : "靠\u003cb\u003e左\u003c/b\u003e以繼續行駛\u003cb\u003eI-5 N\u003c/b\u003e",
+                     "maneuver" : "keep-left",
+                     "polyline" : {
+                        "points" : "ysxmElzjoUsAdDiAtB_BxCaAfBuAjCGJUd@w@bBQ^O\\y@tB_@dAA@IVq@zAgA~BCFCBgBjD[f@GLELIREJsA`Dc@bASj@y@rBa@~@aA|B[x@e@hA]z@a@bAsAhD?@uCbHSd@O`@g@jAABm@vAsA`DmB`FIPwC~GiF|Ky@`BGJmBvD{AzCsFxKQ\\yC`Gw@fBoDzHu@|A}B~EmCvGs@xAKR_@x@Q`@[p@KTKToApCu@zAaAdBc@r@a@r@kAnBmAnBaB~BW\\qAdBi@p@m@r@EDgBnBaChCmChCEBeAfAuCrCgAdAKJmBlBgBbBoArAwA~As@z@EDIJa@h@u@bAcBnCqAhCwAnCu@bBu@dBq@zAq@vAi@dAs@pAs@hAg@p@iBnC_BzBcApA{A`B{A`Bk@h@o@j@cAt@]X]XcDvBw@d@w@d@}CnBi@^y@f@w@d@KFIFOJOJEDQJEB[PsDzBgBhA{ClB{@j@YP}HzE_@TyA~@A?{BtAA@[RA?]T}BtA]RA@}@h@}BrAwA|@{BvAi@Xg@Ze@XaBlAuGhEiBnAoAp@_@TeC|AgGnEcAn@SLm@^wAz@a@Vu@`@kF`D_@R?@wBlAGBoBjA}BrAKFGDu@b@YN{@b@WNcB`Aa@VoDvBwCbBcAn@}@h@sBhAe@Ve@V[RMF_@Ru@b@GDm@\\yAz@SJc@VeAn@q@`@}A|@sBjA}@h@]TcDjBkAp@cAl@ID}@h@wCdB_@T_@T_Ap@y@n@g@b@i@f@_@^a@`@UXm@r@_@b@a@j@QVwAvBk@|@A@W^cA~AeA`B{BhDgAbBg@t@uAxBg@t@uCnEgA`Bg@v@e@t@k@|@eA`BcBdC}@tASZw@lAiIhMW^uBbDW^gAdBSXSZg@n@MPEDe@j@_@^[\\kAdAe@\\UNOLs@d@CB}@j@sAr@e@TC@MD[Lq@Vs@R_B`@iE|@WFqDr@sAZs@NWDcB^ODc@HcB\\C@]HaAP}A\\c@Jg@JgAZi@Nu@XiAd@gAh@eAl@MHKFe@TOHc@Xe@\\g@ZONa@ZcAr@_C~A[PeAr@SNyB|A_@\\cAz@qAnAoApA_A|@{A|AYX_A~@}@|@eAbAs@t@uBtBoBpBmAlA{AzAm@j@YZ]\\kAhAeAhAg@f@KLOPs@|@a@n@QXq@fA{@vAy@tA]l@[b@w@nA]b@c@h@YZ[\\w@x@WVCBKJA@MN_@\\s@p@wAvAoAnA}@x@y@v@A@eB~Ao@l@cA`Ai@h@aIrHiJzIONoBjB_@Zc@`@ED]Za@^a@^ONi@b@u@j@q@f@cAj@IDYPo@^w@\\w@b@y@d@ID]PA@g@\\_Ap@w@n@EDeBbBwCpCmBbB}AxA_CvB}AvAu@r@cA`AoAtAgEdFgBtBY\\aCrCwAjBa@r@[d@i@|@S^Wf@g@`AYj@o@fAS\\QVg@n@[b@_@d@c@d@i@h@UTs@l@uBhBw@r@OLED]\\m@n@m@n@k@v@a@l@[h@s@nAi@pAeAxCO^IPWt@Od@MZCFy@dCw@xBOb@cCbHcAtCaAvCWbAm@pCy@lE"
+                     },
+                     "start_location" : {
+                        "lat" : 33.8823716,
+                        "lng" : -118.0255065
+                     },
+                     "travel_mode" : "DRIVING"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "2.2 英里",
+                        "value" : 3574
+                     },
+                     "duration" : {
+                        "text" : "3 分鐘",
+                        "value" : 166
+                     },
+                     "end_location" : {
+                        "lat" : 34.0256221,
+                        "lng" : -118.2059515
+                     },
+                     "html_instructions" : "靠\u003cb\u003e右\u003c/b\u003e以繼續行駛\u003cb\u003eI-5 N\u003c/b\u003e",
+                     "maneuver" : "keep-right",
+                     "polyline" : {
+                        "points" : "_rrnEnbgpUq@rC_@bAYp@KVg@dAq@pAOXIPA@A@Ud@MXABEJGNCFAB[t@ADADi@~ASl@EPITWt@eAzC_AvCkCrHa@hA?@A?ENs@lBe@vAYbAK`@ABU~@CLMt@m@vDMrAMrA?@OtDC`G?bIBpK@lB?nE?rEA`D?@Ct@EjAC`@C`@Gt@MrAE^Ih@Mz@QfAKh@Mf@Sv@Mf@Y`ASl@Sj@aBbFiAfD{@jCQf@Od@q@pBOf@eBdFAFaB|EaBfF}AvE_@hAMb@_@pA[lAELI\\M`@"
+                     },
+                     "start_location" : {
+                        "lat" : 34.0151967,
+                        "lng" : -118.1701571
+                     },
+                     "travel_mode" : "DRIVING"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "11.7 英里",
+                        "value" : 18764
+                     },
+                     "duration" : {
+                        "text" : "15 分鐘",
+                        "value" : 907
+                     },
+                     "end_location" : {
+                        "lat" : 34.1291624,
+                        "lng" : -118.3472425
+                     },
+                     "html_instructions" : "分岔路口靠\u003cb\u003e左\u003c/b\u003e繼續走\u003cb\u003eUS-101 N\u003c/b\u003e，沿著\u003cb\u003eLos Angeles N\u003c/b\u003e/\u003cwbr/\u003e\u003cb\u003eCivic Center\u003c/b\u003e的路標走",
+                     "maneuver" : "fork-left",
+                     "polyline" : {
+                        "points" : "cstnEdbnpU?b@CPCNg@xBW`AMf@Od@Ut@cArCmAnDKXIXSj@o@lBQd@_CzGwAfEIPM\\_@hA[~@_AnCe@vAi@zACDWn@a@dAWp@u@fBO\\S`@]p@IPCDGLMTOZ]j@]h@QZc@j@W\\UZe@j@KNGDABC@C@SHiAhAA?EDw@x@[Zs@h@m@`@]TKDQLQF[NEBSJE@KDMDiAXC@]JWDg@FOB]Dy@DU?_@@u@As@EoBWy@Gu@Ek@?GAW?_@@[BmAFy@Fa@@U@a@?W?a@Aa@CC?]C]Cu@KeC_@}BY}CU]Ak@Ae@?wA@iB@oC@k@?}AF]@K?aAHS@k@Di@Hm@Fm@JyAXi@L_Bb@C@_A\\c@PsAh@UHeAh@GBE@C@_A^OFc@Pe@R}@\\{An@WNUNA?ML_@XMNIJQRQVGJABIJQ^[z@A??BEJOd@CLAHCJAHCP?HCNAPARAb@Er@?HAF?DAJ?DADG^AJC^AFATCJ?DAJOnAU~BKhAEZC`@CNMrAKpAQzBMtAOzBCRGbAAJK|ACRAT?TCv@ARCVEZIdAGbA?BCZEbACj@CdAAz@Bv@@J@PDbA?j@At@Ab@C\\Gp@CNGZG\\I^GPCJUl@Wn@CHCDIPOZOVa@v@_@n@MVS\\QZGLYh@S^QZGJGJIPKPGJmA|Bk@fA_@p@k@dAS`@o@jA]n@QZ]n@_@p@KNs@lAMRKP]h@w@pAm@v@U\\CBUXCDSVmAzAST_@`@i@h@g@d@g@b@UPURSPA@eBvAOLiAz@k@d@eBtACDi@b@GD]XEDUPURGD_@ZYXSRONY\\QTY`@UZW^g@x@]h@GHq@dASXW`@[`@S\\e@p@w@lAINe@p@U`@m@|@A@cA~Aa@p@OXg@`AMXYl@Q`@O\\Wr@O^GPGR[~@ELMd@?@K\\_@tA?B[nAi@tBa@zAcAbE_@xAWdAABu@zCCD[nAK`@ADe@jBMf@Mf@Mf@YhAQj@Oh@q@vB[x@Yx@]dAc@nAa@nAADc@jA]fAABQd@a@jACLYv@KX]jAY~@_@fAAHGNGTADyAvEc@jAGPIRu@jBg@lAc@fAM^K\\Od@m@nBa@|AYdAKb@Mj@ET_@lBw@dE]~Au@~Dq@rDWlAUlACHAJMn@I`@I`@If@YjB]`CO`A?@Kr@?DCP_@nCm@~DQpAAJQdACTETc@fDMjAShBKlACPGh@Ij@Ij@Mx@[hBId@Ot@c@hBCJMj@Qj@c@lAKZUj@CDO^[p@Yr@CDSb@S`@MZEJe@fAYn@eAhCO^}@dC}@`Cm@dBQd@y@|BsArDSh@g@rAEHSb@_@x@?Ba@t@KRSb@Wd@CD]n@c@x@o@bAe@t@c@t@_@l@ILILABMTKPMPqBfD{AbCu@hAOVmAjBQTILg@l@g@n@i@f@k@j@k@d@e@^w@n@]T{@f@]TC@wAt@iExB]RA?}@d@[NCBq@\\k@XUN[P]To@d@URa@`@i@h@WVc@n@QTQVMP_@n@i@`AEJAB]l@o@lA_AfBc@v@cAjBg@|@o@hAq@`AILORg@r@e@l@QREFa@^_@^KHYV[Tq@h@YPe@`@_Ah@EDwAt@k@VoAn@}GhDyAt@a@Pe@Vg@Tu@^s@b@]T]X]VSRURYZg@l@UVOTU\\g@~@i@fA]|@Y~@g@zBG\\Mv@E`@E\\Gx@A@?RCXC|@A^?h@?^?TA^Av@?F?Z?~@Cn@?@A`@Cb@G|@ALCRE\\G\\CRABEVEPAHK`@K`@Oj@i@xAQ^Wj@Wh@]l@u@vAu@vAOZEFU`@]r@[r@{@`BcDvGu@zAkAzBm@lAQXkA`Cg@|@[n@[j@KL[f@W\\EFY^[^c@b@GFCD]XMJm@f@w@h@w@`@y@^w@VgAZw@Rs@NmBd@eE`Ac@J_Ez@uBb@}AX{@NsB\\sAZwAf@iA`@kAd@gAh@cAl@aAj@gAv@{@n@cAx@o@j@y@x@s@z@i@n@m@t@]`@kB~BSR{@jAcAlA[^UZC@[`@SVA@WZe@f@g@f@ONi@d@C@EDOJe@\\E@ABu@d@GDA?gB`ASL[RYRWPQLQL_@\\MLQPg@h@gBhBCDIDOPGFOPONKLGDw@x@_A~@"
+                     },
+                     "start_location" : {
+                        "lat" : 34.0256221,
+                        "lng" : -118.2059515
+                     },
+                     "travel_mode" : "DRIVING"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "0.1 英里",
+                        "value" : 222
+                     },
+                     "duration" : {
+                        "text" : "1 分鐘",
+                        "value" : 12
+                     },
+                     "end_location" : {
+                        "lat" : 34.1307998,
+                        "lng" : -118.3485738
+                     },
+                     "html_instructions" : "在\u003cb\u003e11B\u003c/b\u003e出口下交流道，朝\u003cb\u003eUniversal Studios Bl\u003c/b\u003e前進",
+                     "maneuver" : "ramp-right",
+                     "polyline" : {
+                        "points" : "gzhoEfuiqUWDE@y@r@MJURYXA?IHe@`@]ZUTKHGHMHOLCBUD"
+                     },
+                     "start_location" : {
+                        "lat" : 34.1291624,
+                        "lng" : -118.3472425
+                     },
+                     "travel_mode" : "DRIVING"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "0.3 英里",
+                        "value" : 447
+                     },
+                     "duration" : {
+                        "text" : "1 分鐘",
+                        "value" : 30
+                     },
+                     "end_location" : {
+                        "lat" : 34.1338819,
+                        "lng" : -118.3515888
+                     },
+                     "html_instructions" : "走\u003cb\u003eW.C. Fields Dr\u003c/b\u003e",
+                     "maneuver" : "merge",
+                     "polyline" : {
+                        "points" : "odioEp}iqUMLSLYNEBYNe@Xk@^]T]TQLMH_@Tm@l@[b@U\\S\\CDQZGLKNGLGFCFEDCBCBCBC@EDEBEBC@EDCBEBEBCB?@CBC@CBEFCBCDEDEFINUd@"
+                     },
+                     "start_location" : {
+                        "lat" : 34.1307998,
+                        "lng" : -118.3485738
+                     },
+                     "travel_mode" : "DRIVING"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "0.1 英里",
+                        "value" : 234
+                     },
+                     "duration" : {
+                        "text" : "1 分鐘",
+                        "value" : 27
+                     },
+                     "end_location" : {
+                        "lat" : 34.1358593,
+                        "lng" : -118.3511633
+                     },
+                     "html_instructions" : "於\u003cb\u003eUniversal Studios Blvd\u003c/b\u003e向\u003cb\u003e右\u003c/b\u003e轉\u003cdiv style=\"font-size:0.9em\"\u003e目的地在右邊\u003c/div\u003e",
+                     "maneuver" : "turn-right",
+                     "polyline" : {
+                        "points" : "wwioElpjqUQNA@A@A?A@C?C?A?A?A?C?CAA?CAAAA??AA?CAEAC?A?A?A?A?A?A?OQCAAAECUMGCGCECGCGCICICICGAECKACAGAIAGAGAG?IAQAMAI?IAI?K?I@O@IA"
+                     },
+                     "start_location" : {
+                        "lat" : 34.1338819,
+                        "lng" : -118.3515888
+                     },
+                     "travel_mode" : "DRIVING"
+                  }
+               ],
+               "traffic_speed_entry" : [],
+               "via_waypoint" : []
+            }
+         ],
+         "overview_polyline" : {
+            "points" : "asimEjawnUD~@RRjGUb@TRf@@pFCbCuIDGZzICHGHiAF{HKk@QO{@_@wA@_DXQSCw@?g@_@?yH@aTBcDTkGVgGCcBm@_A}@a@u@}A_Do@k@uCq@{BYgBBgEb@sG`B_Br@kA\\s@QyCeAkBa@wA?qA^gHbG}EdE}@nAeCtBuFxFaGpGwMtNaChCaChDeBlDiAdD}ApGcDxU}@hEmAxD}[tt@wOv]wH~MgBhD_DzHqM~[kIrSaLxWmF|KcD`FkKrNaDfF{@pB}@~CkBfJiEfRgBbG{DzJmCnFuFpJ{G|MeMvYiPp^yMfZgDrFiCdDqEhEoI~L{AdCmEnJ_BjEyB`HmCvH_EzJoHzPqEfK}CzGaD`GkD`H{BxFqGtM}On`@sMv[eMpXeMxVsKbUuJnTwFzLsE|HyGrJeEzE{I~IwIrIcIrIgB~BuDxGmCrFcE~IyF|IcDlEwDbE}DdDkRzLoBnA}g@n[iOdJqPxKqNrJ}NzIwLbH}^`Ti^zSwGbEkDzCeCrCwDxFeN`TiPzVaUr]eEfFmGvEkCpAaFzAgTpEuKzBqFjBgDhB}GrEuFtDoHfG}N~NaQ`QiCpCyCnEoD~FyB|CwC|Csl@`k@eFrEuDdCyDrBcB~@eDdCaXxVyKnMwGxImFpJgC~CiFvEmAfAeDtD{CxFwB`GkJfXyAzEgB~IqAvEe@hAsBbEYh@_AzBiBvFoJpXuBdIiA`JSvL?bIDb\\KdHmAzK{@pDcD~JqIhWqKx\\[tBqArFqGlR}JrYkFfNcCvE{DlFgDzC{C|BkAj@eDdAmBVeDDsGk@kB?eETqB?aBKwM{AkQHqHp@cFjA{DzA}DbBcFrB}@l@eBpBsAjDa@xFqBtSmAbPc@tHMnC?dEDvDQbCwA~EqChFqKbSgEpHkElGkD|D{BnBkJvHiCtByDjEgMrR}ClFiAfCgBnF{Kfc@wCnK}ErNqItWcFhNqE|SiDtQqBpM{B`PmBhPcClMaDlIeEtJmJnWcDlHwFrJkGdKeDbFcCrCuD`D{BtAqMzG{BpAqCdC_BtB}AnCoIrOsE`GsG~EySlKoDnBeBxAgBvBeCbFwApGUzBKjGKrGg@jE_@~AcBpEkF`KiOnZ_EtGkApAqCvBqFtB_LjCwLdCoDl@kDbAaH~CiGlEgEpEkEjFgFrGyDtDiF~CqDrCuEzEkClCwAz@cDvCq@j@{@d@gEhCmBzAiAdB_A|AgAz@}@xAc@Tg@KyAw@wCg@mA?"
+         },
+         "summary" : "I-5 N和US-101 N",
+         "warnings" : [],
+         "waypoint_order" : []
+      }
+   ],
+   "status" : "OK"
+}
