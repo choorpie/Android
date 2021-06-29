@@ -51,7 +51,7 @@ class BookFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_book, container, false)
         binding.dateIn.setOnClickListener {
             context?.hideKeyboard()
-            val dpd = DatePickerDialog(context!!, DatePickerDialog.OnDateSetListener{ view, mYear, mMonth, mDay ->
+            val dpd = DatePickerDialog(requireContext(), DatePickerDialog.OnDateSetListener{ view, mYear, mMonth, mDay ->
 
                 // set to textView
                 binding.dateIn.setText("" + mDay + " / " + mMonth + " / " + mYear)
@@ -66,7 +66,7 @@ class BookFragment : Fragment() {
             val yearOut = year
             val monthOut = month
             val dayOut = day
-            val dpd = DatePickerDialog(context!!, DatePickerDialog.OnDateSetListener{ view, mYear, mMonth, mDay ->
+            val dpd = DatePickerDialog(requireContext(), DatePickerDialog.OnDateSetListener{ view, mYear, mMonth, mDay ->
                 // set to textView
                 binding.dateOut.setText("" + mDay + " / " + mMonth + " / " + mYear)
                 Log.i("now", mMonth.toString())
@@ -84,7 +84,7 @@ class BookFragment : Fragment() {
             if(DayMonthYearIn[0] >= DayMonthYearOut[0]){
                 if(DayMonthYearIn[1] >= DayMonthYearOut[1]){
 //                    Toast.makeText(context!!, "No", Toast.LENGTH_SHORT).show()
-                    val builder = AlertDialog.Builder(context!!)
+                    val builder = AlertDialog.Builder(requireContext())
                     builder.setTitle("Please maker sure about data")
                     builder.setMessage("入住日期不能晚於退房日期!!")
 
