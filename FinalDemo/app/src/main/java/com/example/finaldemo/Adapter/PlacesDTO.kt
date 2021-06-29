@@ -6,6 +6,7 @@ class PlacesDTO {
 
 class Results {
 //    var geometry: Map<String, Viewport>? = null
+    var name = ""
     lateinit var geometry: Map<String, LOCATION>
 }
 

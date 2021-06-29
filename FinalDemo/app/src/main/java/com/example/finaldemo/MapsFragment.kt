@@ -38,8 +38,8 @@ class MapsFragment : Fragment(), OnMapReadyCallback{
     private lateinit var mMap: GoogleMap
     private lateinit var args: MapsFragmentArgs
     val TAG = "MapsFragment"
-    var placeTypeList = arrayOf("ATM","Bank","Hospital","Movie Theater","Restaurant")
-    var placeNameList = arrayOf("ATM","Bank","Hospital","Movie Theater","Restaurant")
+    var placeTypeList = arrayOf("ATM","Bank","Hospital","GYM","Bus_station")
+    var placeNameList = arrayOf("ATM","Bank","Hospital","GYM","Bus_station")
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
 
     override fun onCreateView(
@@ -95,6 +95,14 @@ class MapsFragment : Fragment(), OnMapReadyCallback{
             mMap.addMarker(MarkerOptions().position(local_location).title("NDHU"))
 
             binding.btFind.setOnClickListener{
+                mMap.clear()
+// -------------------------------------------------------------------------------------------------------------------
+                val location = LatLng(addressList[0].latitude, addressList[0].longitude)
+                mMap.addMarker(MarkerOptions().position(location).title(args.name))
+                val local_location = LatLng(23.897532369370133, 121.54138184279184)
+                mMap.addMarker(MarkerOptions().position(local_location).title("NDHU"))
+// -------------------------------------------------------------------------------------------------------------------
+
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15f))
                 // Get selected position of spinner
                 var i = binding.spType.selectedItemPosition
@@ -104,19 +112,22 @@ class MapsFragment : Fragment(), OnMapReadyCallback{
                 val url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json" + // url
                 "?location=" + addressList[0].latitude + "," + addressList[0].longitude + // Location latitude and longitude
                 "&radius=5000" + // Nearby radius
-                "&types=" + placeTypeList[i] + // Place type
-                "&sensor=true" + // Sensor
+                "&types=" + placeTypeList[i].toLowerCase() + // Place type
                 "&key=AIzaSyAafNXUFM-tN-D5pIRjYCIeeKxyjahpepw"
 
+                Log.i("rtyu", url)
                 // Execute place task method to download json data
                 PlaceTask(url).execute()
+
+                val URL = getDirectionURL(local_location, location)
+//                Log.i("past", URL)
+                GetDirection(URL).execute()
 
             }
 
             val URL = getDirectionURL(local_location, location)
-            Log.i("past", URL)
+//            Log.i("past", URL)
             GetDirection(URL).execute()
-
         }
     }
 
@@ -145,17 +156,17 @@ class MapsFragment : Fragment(), OnMapReadyCallback{
                         , respObjSearch.results[i].geometry?.get("location")?.lng?.toDouble()!!
                     )
 
+                    activity?.runOnUiThread{
+                            mMap.addMarker(MarkerOptions().position(latLngSearch).title(respObjSearch.results[i].name))
+                    }
+
                     Log.i("qwer", latLngSearch.toString())
 //                    mMap.addMarker(MarkerOptions().position(latLngSearch).title("123"))
 
 //                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
                     pathSearch.add(latLngSearch)
                 }
-                activity?.runOnUiThread{
-                    for (i in 0..pathSearch.size-1){
-                        mMap.addMarker(MarkerOptions().position(pathSearch[i]).title(i.toString()))
-                    }
-                }
+
                 Log.i("path", pathSearch.toString())
                 result.add(pathSearch)
                 Log.i("wass", result.toString())
