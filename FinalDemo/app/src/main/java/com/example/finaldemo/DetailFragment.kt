@@ -88,9 +88,11 @@ class DetailFragment : Fragment(){
             0 -> binding.icon.visibility = View.INVISIBLE
         }
 
-//        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-//        val mapFragment = getFragmentManager()?.findFragmentById(R.id.map) as SupportMapFragment
-//        mapFragment.getMapAsync(this)
+        // book it button
+        binding.bookButton.setOnClickListener(){
+            it.findNavController()
+                .navigate(DetailFragmentDirections.actionDetailFragmentToBookFragment())
+        }
 
         return binding.root
     }
