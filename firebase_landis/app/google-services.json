@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "148595402948",
+    "project_id": "fir-landis",
+    "storage_bucket": "fir-landis.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:148595402948:android:971f4d778f94f666c6c191",
+        "android_client_info": {
+          "package_name": "com.example.firebase_landis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "148595402948-ja53s5qr400hltsbb4lqej1ocqqbpk8o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrKC62_j4u2UgZvmxdMvp5xnNgz7V6ttU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "148595402948-ja53s5qr400hltsbb4lqej1ocqqbpk8o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
