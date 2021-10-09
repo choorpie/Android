@@ -166,6 +166,49 @@ public class MainActivity extends AppCompatActivity {
                         data = myDataSnapshot.getValue(Data.class); // wrong
                         xAxisValue.add(myDataSnapshot.getKey());
                         dataVals.add(new Entry(count, data.getHumid()));
+//                        dataValsMonth.add(new Entry(count_month, data.getHumid()));
+                        count += 1;
+//                        count_month += 1;
+//                        Log.e("count_month", String.valueOf(count_month));
+//                        Log.e("dataValsMonth", String.valueOf(dataValsMonth));
+                    }
+                    Log.e("dataVals", String.valueOf(dataVals));
+                    Log.e("xAxisValue", String.valueOf(xAxisValue));
+                    showChart(dataVals);
+////
+                }else{
+                    lineChart.clear();
+                    lineChart.invalidate();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void retrieveData(DatabaseReference Ref){
+        Ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                ArrayList<Entry> dataVals = new ArrayList<Entry>();
+
+                if(snapshot.hasChildren()){
+                    xAxisValue.clear();
+                    count = 0;
+//                    count_month = 0;
+                    dataVals.clear();
+//                    dataValsMonth.clear();
+                    for(DataSnapshot myDataSnapshot: snapshot.getChildren()){
+                        Log.e("myDataSnapshot1", String.valueOf(myDataSnapshot));
+                        Log.e("myDataSnapshot1.getKey()",myDataSnapshot.getKey());
+                        Log.e("myDataSnapshot1.getValue()", String.valueOf(myDataSnapshot.getValue()));
+//                        Entry keyValue = new Entry(1, myDataSnapshot.getValue());
+                        data = myDataSnapshot.getValue(Data.class); // wrong
+                        xAxisValue.add(myDataSnapshot.getKey());
+                        dataVals.add(new Entry(count, data.getHumid()));
                         dataValsMonth.add(new Entry(count_month, data.getHumid()));
                         count += 1;
                         count_month += 1;
@@ -206,15 +249,19 @@ public class MainActivity extends AppCompatActivity {
                         Log.e("test.getValue()", String.valueOf(myDataSnapshot.getValue()));
 //                        Entry keyValue = new Entry(1, myDataSnapshot.getValue());
 //                        String value = myDataSnapshot.getKey();
-                        MonthData MonthDatadata = myDataSnapshot.getValue(MonthData.class); // wrong // 沒有讀到
+//                        MonthData MonthDatadata = myDataSnapshot.getValue(MonthData.class); // wrong // 沒有讀到
                         // myDataSnapshot.getValue() 是 HashMap
 //                        Log.e("timeKey", String.valueOf(timeKey));
-                        retrieveData();
+                        String key = myDataSnapshot.getKey();
+                        Log.e("key", key);
+                        DatabaseReference ref = RefToMonth.child(key);
+                        Log.e("ref", String.valueOf(ref));
+                        retrieveData(ref);
 //                        Log.e("test_dataValsMonth", String.valueOf(dataValsMonth));
                         Log.e("test_dataVals", String.valueOf(dataVals));
 //                        dataValsMonth.addAll(dataVals);
                         Log.e("data", String.valueOf(data));
-                        Log.e("test_data", String.valueOf(MonthDatadata.getKeyvalue()));
+//                        Log.e("test_data", String.valueOf(MonthDatadata.getKeyvalue()));
 //                        break;
 
 //                        xAxisValue.add(myDataSnapshot.getValue().toString());
