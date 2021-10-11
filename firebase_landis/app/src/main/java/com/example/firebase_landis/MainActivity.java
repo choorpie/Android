@@ -45,19 +45,20 @@ public class MainActivity extends AppCompatActivity {
     String time;
     int count;
     Data data;
-    static ArrayList<Entry> dataVals = new ArrayList<Entry>();
-    static ArrayList<Entry> dataValsMonth = new ArrayList<Entry>();
-    static int count_month;
+    final ArrayList<Entry> dataVals = new ArrayList<Entry>();
+    final ArrayList<Entry> dataValsMonth = new ArrayList<Entry>();
+    final ArrayList<String> xAxisValue = new ArrayList<>();
+    int count_month;
     // create object of firebase database
     FirebaseDatabase firebaseDatabase;
     // database reference
-    DatabaseReference RefToHub_1, RefToYear, RefToMonth, RefToDay, RefToTime, RefToHumid;
+    DatabaseReference RefToHub_1, RefToYear, RefToMonth, RefToDay;
 
     //MPAndroidChart
     LineDataSet lineDataSet = new LineDataSet(null, null);
     ArrayList<ILineDataSet> iLineDataSets = new ArrayList<>();
     LineData lineData;
-    ArrayList<String> xAxisValue = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,8 +84,6 @@ public class MainActivity extends AppCompatActivity {
         RefToYear = RefToHub_1.child(String.valueOf(year));
         RefToMonth = RefToYear.child(String.valueOf(month));
         RefToDay = RefToMonth.child(String.valueOf(day));
-//        RefToTime = RefToDate.child("17:28:11");
-//        RefToHumid = RefToTime.child("humid");
 
         insertData();
         inquireDataDay();
@@ -133,11 +132,11 @@ public class MainActivity extends AppCompatActivity {
 
                 int humid = Integer.parseInt(humidTextView.getText().toString());
 //                RefToHumid.child()
-                Data data = new Data(humid);
-                Log.e("time", String.valueOf(data));
+                Data data_insert = new Data(humid);
+                Log.e("time", String.valueOf(data_insert));
 
                 // firebase 在 insert data 時, 需要 getter
-                RefToDay.child(time).setValue(data);
+                RefToDay.child(time).setValue(data_insert);
 
                 humidTextView.setText("");
                 retrieveData();
@@ -150,32 +149,29 @@ public class MainActivity extends AppCompatActivity {
         RefToDay.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                ArrayList<Entry> dataVals = new ArrayList<Entry>();
-
                 if(snapshot.hasChildren()){
+                    dataVals.clear();
                     xAxisValue.clear();
                     count = 0;
-//                    count_month = 0;
-                    dataVals.clear();
-//                    dataValsMonth.clear();
                     for(DataSnapshot myDataSnapshot: snapshot.getChildren()){
                         Log.e("myDataSnapshot", String.valueOf(myDataSnapshot));
                         Log.e("myDataSnapshot.getKey()",myDataSnapshot.getKey());
                         Log.e("myDataSnapshot.getValue()", String.valueOf(myDataSnapshot.getValue()));
-//                        Entry keyValue = new Entry(1, myDataSnapshot.getValue());
                         data = myDataSnapshot.getValue(Data.class); // wrong
                         xAxisValue.add(myDataSnapshot.getKey());
                         dataVals.add(new Entry(count, data.getHumid()));
-//                        dataValsMonth.add(new Entry(count_month, data.getHumid()));
                         count += 1;
-//                        count_month += 1;
-//                        Log.e("count_month", String.valueOf(count_month));
-//                        Log.e("dataValsMonth", String.valueOf(dataValsMonth));
                     }
-                    Log.e("dataVals", String.valueOf(dataVals));
-                    Log.e("xAxisValue", String.valueOf(xAxisValue));
                     showChart(dataVals);
-////
+//                    Log.e("dataVals", String.valueOf(dataVals));
+//                    Log.e("xAxisValue", String.valueOf(xAxisValue));
+
+//                    if(!dataVals.isEmpty()){
+//                        Log.e("dataVals", String.valueOf(dataVals));
+//                        Log.e("xAxisValue", String.valueOf(xAxisValue));
+//                        showChart(dataVals);
+//                    }
+
                 }else{
                     lineChart.clear();
                     lineChart.invalidate();
@@ -193,36 +189,27 @@ public class MainActivity extends AppCompatActivity {
         Ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                ArrayList<Entry> dataVals = new ArrayList<Entry>();
-
+//                xAxisValue.clear();
                 if(snapshot.hasChildren()){
-                    xAxisValue.clear();
-                    count = 0;
-//                    count_month = 0;
-                    dataVals.clear();
-//                    dataValsMonth.clear();
                     for(DataSnapshot myDataSnapshot: snapshot.getChildren()){
-                        Log.e("myDataSnapshot1", String.valueOf(myDataSnapshot));
-                        Log.e("myDataSnapshot1.getKey()",myDataSnapshot.getKey());
-                        Log.e("myDataSnapshot1.getValue()", String.valueOf(myDataSnapshot.getValue()));
-//                        Entry keyValue = new Entry(1, myDataSnapshot.getValue());
+//                        Log.e("myDataSnapshot1", String.valueOf(myDataSnapshot));
+//                        Log.e("myDataSnapshot1.getKey()",myDataSnapshot.getKey());
+//                        Log.e("myDataSnapshot1.getValue()", String.valueOf(myDataSnapshot.getValue()));
                         data = myDataSnapshot.getValue(Data.class); // wrong
-                        xAxisValue.add(myDataSnapshot.getKey());
-                        dataVals.add(new Entry(count, data.getHumid()));
                         dataValsMonth.add(new Entry(count_month, data.getHumid()));
-                        count += 1;
                         count_month += 1;
+//                        Log.e("Ref.getParent();", String.valueOf(Ref.getKey()));
+                        xAxisValue.add(Ref.getKey());
+
                         Log.e("count_month", String.valueOf(count_month));
-//                        Log.e("dataValsMonth", String.valueOf(dataValsMonth));
                     }
-                    Log.e("dataVals", String.valueOf(dataVals));
+//                    Log.e("dataVals", String.valueOf(dataVals));
                     Log.e("xAxisValue", String.valueOf(xAxisValue));
-//                    showChart(dataVals);
-////
                 }else{
                     lineChart.clear();
                     lineChart.invalidate();
                 }
+                showChart(dataValsMonth);
             }
 
             @Override
@@ -235,50 +222,36 @@ public class MainActivity extends AppCompatActivity {
     private void retrieveTest(){
         RefToMonth.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                ArrayList<Entry> dataValsMonth = new ArrayList<Entry>();
-//                dataValsMonth.clear();
+            public void onDataChange(@NonNull DataSnapshot snapshot){
 
                 if(snapshot.hasChildren()){
-//                    dataValsMonth.clear();
-                    xAxisValue.clear();
                     count_month = 0;
+
                     for(DataSnapshot myDataSnapshot: snapshot.getChildren()){
-                        Log.e("test", String.valueOf(myDataSnapshot)); // DataSnapshot { key = 06, value = {18:02:59={humid=1}}
-                        Log.e("test.getKey()",myDataSnapshot.getKey());
-                        Log.e("test.getValue()", String.valueOf(myDataSnapshot.getValue()));
-//                        Entry keyValue = new Entry(1, myDataSnapshot.getValue());
-//                        String value = myDataSnapshot.getKey();
-//                        MonthData MonthDatadata = myDataSnapshot.getValue(MonthData.class); // wrong // 沒有讀到
-                        // myDataSnapshot.getValue() 是 HashMap
-//                        Log.e("timeKey", String.valueOf(timeKey));
+//                        Log.e("test", String.valueOf(myDataSnapshot)); // DataSnapshot { key = 06, value = {18:02:59={humid=1}}
+//                        Log.e("test.getKey()",myDataSnapshot.getKey());
+//                        Log.e("test.getValue()", String.valueOf(myDataSnapshot.getValue()));
+
+//                        xAxisValue.add(myDataSnapshot.getKey());
+//                        Log.e("xAxisValue1", String.valueOf(xAxisValue));
+
                         String key = myDataSnapshot.getKey();
-                        Log.e("key", key);
                         DatabaseReference ref = RefToMonth.child(key);
-                        Log.e("ref", String.valueOf(ref));
                         retrieveData(ref);
-//                        Log.e("test_dataValsMonth", String.valueOf(dataValsMonth));
-                        Log.e("test_dataVals", String.valueOf(dataVals));
-//                        dataValsMonth.addAll(dataVals);
-                        Log.e("data", String.valueOf(data));
-//                        Log.e("test_data", String.valueOf(MonthDatadata.getKeyvalue()));
-//                        break;
-
-//                        xAxisValue.add(myDataSnapshot.getValue().toString());
-//                        dataVals.add(new Entry(count, data.getHumid()));
-//                        count += 1;
-
+                        Log.e("xAxisValue1", String.valueOf(xAxisValue));
                     }
+//                    Log.e("test_dataValsMonth", String.valueOf(dataValsMonth.size()));
+//                    Log.e("test_xAxisValue", String.valueOf(xAxisValue.size()));
 
-                    Log.e("test_dataValsMonth", String.valueOf(dataValsMonth));
-                    Log.e("test_xAxisValue", String.valueOf(xAxisValue));
+//                    Log.e("xAxisValue_size", String.valueOf(xAxisValue.size()));
 
-                    if(!dataValsMonth.isEmpty()){
-                        showChart(dataValsMonth);
+                    if(!dataValsMonth.isEmpty()) {
+                        Log.e("test_dataValsMonth", String.valueOf(dataValsMonth.size()));
+                        Log.e("test_xAxisValue", String.valueOf(xAxisValue.size()));
                     }
                     dataValsMonth.clear();
+                    xAxisValue.clear();
 
-////
                 }else{
                     lineChart.clear();
                     lineChart.invalidate();
@@ -293,14 +266,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showChart(ArrayList<Entry> dataVals) {
-//        XAxis xAxis = lineChart.getXAxis();
-//        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-//        xAxis.setValueFormatter(new IAxisValueFormatter() {
-//            @Override
-//            public String getFormattedValue(float value, AxisBase axis) {
+        XAxis xAxis = lineChart.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setValueFormatter(new IAxisValueFormatter() {
+            @Override
+            public String getFormattedValue(float value, AxisBase axis) {
+                if (value < xAxisValue.size()) {
+                    return xAxisValue.get((int)value);
+                } else {
+                    return "0";
+                }
 //                return xAxisValue.get((int)value);
-//            }
-//        });
+            }
+        });
+        Log.e("show_xAxisValue", String.valueOf(xAxisValue.size()));
+        Log.e("show_dataVals", String.valueOf(dataVals.size()));
         lineDataSet.setValues(dataVals);
         lineDataSet.setLabel("Humid");
         iLineDataSets.clear();
@@ -311,6 +291,7 @@ public class MainActivity extends AppCompatActivity {
         lineChart.setData(lineData);
 
         lineChart.invalidate();
+
     }
 
     public void hideSoftKeyboard(View view){

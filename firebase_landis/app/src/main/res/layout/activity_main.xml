@@ -38,22 +38,35 @@
 
             <Button
                 android:id="@+id/btnInsert"
-                android:layout_width="100dp"
+                android:layout_width="95dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
+                android:layout_weight="1"
                 android:text="Insert" />
 
             <Button
                 android:id="@+id/btnInquire"
-                android:layout_width="100dp"
+                android:layout_width="95dp"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
                 android:text="Inquire" />
 
             <Button
                 android:id="@+id/btnTest"
-                android:layout_width="100dp"
+                android:layout_width="95dp"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
                 android:text="Test" />
+
+            <Button
+                android:id="@+id/btnNow"
+                android:layout_width="95dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Now" />
+
         </LinearLayout>
 
         <com.github.mikephil.charting.charts.LineChart
