@@ -1,9 +1,11 @@
 package com.example.firebase_landis;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.icu.text.Edits;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +13,8 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
@@ -39,12 +43,14 @@ import java.util.TimeZone;
 public class MainActivity extends AppCompatActivity {
 
     EditText humidTextView;
-    Button insertBtn, inquireBtn, testBtn;
+    Button insertBtn, inquireBtn, testBtn, nowBtn;
     LineChart lineChart;
     String year, month, day, hour, minute, second;
     String time;
     int count;
     Data data;
+    String csTime;
+    Integer csMess;
     final ArrayList<Entry> dataVals = new ArrayList<Entry>();
     final ArrayList<Entry> dataValsMonth = new ArrayList<Entry>();
     final ArrayList<String> xAxisValue = new ArrayList<>();
@@ -76,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
         insertBtn = findViewById(R.id.btnInsert);
         inquireBtn = findViewById(R.id.btnInquire);
         testBtn = findViewById(R.id.btnTest);
+        nowBtn = findViewById(R.id.btnNow);
+
 
         lineChart = findViewById(R.id.lineChartView);
 
@@ -88,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         insertData();
         inquireDataDay();
         inquireTest();
-//        retrieveData();
+        inquireNow();
     }
 
     private void getCurrentTime() {
@@ -123,6 +131,50 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void inquireNow() {
+        nowBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                RefToDay.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for(DataSnapshot myDataSnapshot: snapshot.getChildren()){
+                            Log.e("myDataSnapshot..", String.valueOf(myDataSnapshot));
+                            Log.e("myDataSnapshot...getKey()",myDataSnapshot.getKey());
+                            Log.e("myDataSnapshot...getValue()", String.valueOf(myDataSnapshot.getValue()));
+                            data = myDataSnapshot.getValue(Data.class);
+                            csTime = myDataSnapshot.getKey();
+                            csMess = data.getHumid();
+//                            Log.e("csTime[0]", String.valueOf(csTime[0]));
+//                            Log.e("csMess[0]", String.valueOf(csMess));
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                    }
+                });
+
+                Log.e("data", String.valueOf(data));
+                Log.e("csTime", String.valueOf(csTime));
+
+                AlertDialog dialog = new AlertDialog.Builder(MainActivity.this)
+                        .setTitle("目前濕度：")
+                        .setMessage(csTime + "           " + csMess)
+                        .setPositiveButton("確認", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .show();
+                TextView textView = (TextView)dialog.findViewById(android.R.id.message);
+                textView.setTextSize(40);
+            }
+        });
+    }
+
 
     private void insertData() {
         insertBtn.setOnClickListener(new View.OnClickListener() {
@@ -130,10 +182,18 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 getCurrentTime();
 
+                if(humidTextView.getText().toString().matches("")){
+                    Toast toast = Toast.makeText(MainActivity.this, "欄位不能為空", Toast.LENGTH_LONG);
+                    toast.show();
+                    return;
+                }
+
                 int humid = Integer.parseInt(humidTextView.getText().toString());
+                Log.e("humid", String.valueOf(humid));
+
 //                RefToHumid.child()
                 Data data_insert = new Data(humid);
-                Log.e("time", String.valueOf(data_insert));
+//                Log.e("time", String.valueOf(data_insert));
 
                 // firebase 在 insert data 時, 需要 getter
                 RefToDay.child(time).setValue(data_insert);

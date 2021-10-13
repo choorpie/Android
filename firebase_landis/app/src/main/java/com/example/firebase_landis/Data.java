@@ -9,6 +9,7 @@ public class Data {
 
     public Data(int humid) {
         this.humid = humid;
+
     }
 
     public Data(String time, int humid) {
