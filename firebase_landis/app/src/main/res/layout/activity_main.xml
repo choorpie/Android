@@ -15,19 +15,127 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
-                android:text="目前濕度：" />
+                android:text="濕度：" />
 
             <EditText
                 android:id="@+id/humidTextView"
-                android:layout_width="match_parent"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:layout_weight="1"
+                android:inputType="textPersonName" />
+            <TextView
+                android:id="@+id/textViewN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="氮：" />
+            <EditText
+                android:id="@+id/NTextView"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:layout_weight="1"
+                android:inputType="textPersonName" />
+            <TextView
+                android:id="@+id/textViewCO2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="二氧化碳：" />
+
+            <EditText
+                android:id="@+id/KTextView"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="textPersonName" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/textViewO2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="氧氣：" />
+
+            <EditText
+                android:id="@+id/O2TextView"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:layout_weight="1"
+                android:inputType="textPersonName" />
+            <TextView
+                android:id="@+id/textViewK"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="鉀：" />
+            <EditText
+                android:id="@+id/CO2TextView"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:layout_weight="1"
+                android:inputType="textPersonName" />
+            <TextView
+                android:id="@+id/textViewSolidTemp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="土壤溫度：" />
+            <EditText
+                android:id="@+id/PTextView"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:layout_weight="1"
+                android:inputType="textPersonName" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/textViewTemp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="溫度：" />
+            <EditText
+                android:id="@+id/TempTextView"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:layout_weight="1"
+                android:inputType="textPersonName" />
+            <TextView
+                android:id="@+id/textViewP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="磷：" />
+            <EditText
+                android:id="@+id/SolidTempTextView"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:layout_weight="1"
+                android:inputType="textPersonName" />
+            <TextView
+                android:id="@+id/textViewSolidHumid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="土壤濕度：" />
+            <EditText
+                android:id="@+id/SolidHumidTextView"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:layout_weight="1"
                 android:inputType="textPersonName" />
         </LinearLayout>
 
@@ -35,6 +143,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+            <TextView
+                android:id="@+id/spnTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="欲察看的資料類型："
+                android:textSize="15sp"
+                android:padding="10dp"/>
+            <Spinner
+                android:id="@+id/spnData"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp">
 
             <Button
                 android:id="@+id/btnInsert"
@@ -50,7 +179,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:text="Inquire" />
+                android:text="Day" />
 
             <Button
                 android:id="@+id/btnTest"
@@ -58,7 +187,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:text="Test" />
+                android:text="Month" />
 
             <Button
                 android:id="@+id/btnNow"

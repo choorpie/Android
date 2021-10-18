@@ -11,8 +11,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,15 +43,17 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.TimeZone;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    EditText humidTextView;
+    EditText humidTextView, CO2TextView, O2TextView, KTextView, NTextView, PTextView, SolidHumidTextView, SolidTempTextView, TempTextView;
+    Spinner spnData;
     Button insertBtn, inquireBtn, testBtn, nowBtn;
     LineChart lineChart;
     String year, month, day, hour, minute, second;
     String time;
     int count;
-    Data data;
+    DataAlltypes data;
+    String type = "humid";
     String csTime;
     Integer csMess;
     final ArrayList<Entry> dataVals = new ArrayList<Entry>();
@@ -79,6 +84,16 @@ public class MainActivity extends AppCompatActivity {
         Log.e("time", time);
 
         humidTextView = findViewById(R.id.humidTextView);
+        TempTextView = findViewById(R.id.TempTextView);
+        CO2TextView = findViewById(R.id.CO2TextView);
+        O2TextView = findViewById(R.id.O2TextView);
+        KTextView = findViewById(R.id.KTextView);
+        NTextView = findViewById(R.id.NTextView);
+        PTextView = findViewById(R.id.PTextView);
+        SolidHumidTextView = findViewById(R.id.SolidHumidTextView);
+        SolidTempTextView = findViewById(R.id.SolidTempTextView);
+
+
         insertBtn = findViewById(R.id.btnInsert);
         inquireBtn = findViewById(R.id.btnInquire);
         testBtn = findViewById(R.id.btnTest);
@@ -92,11 +107,30 @@ public class MainActivity extends AppCompatActivity {
         RefToYear = RefToHub_1.child(String.valueOf(year));
         RefToMonth = RefToYear.child(String.valueOf(month));
         RefToDay = RefToMonth.child(String.valueOf(day));
+        buildSpinner();
 
         insertData();
         inquireDataDay();
         inquireTest();
         inquireNow();
+    }
+
+    private void buildSpinner() {
+        spnData = findViewById(R.id.spnData);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.spnDataList, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnData.setAdapter(adapter);
+        spnData.setOnItemSelectedListener(this);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        type = parent.getItemAtPosition(position).toString();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 
     private void getCurrentTime() {
@@ -116,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
         inquireBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                retrieveData();
+                retrieveData(type);
                 hideSoftKeyboard(inquireBtn);
             }
         });
@@ -143,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
                             Log.e("myDataSnapshot..", String.valueOf(myDataSnapshot));
                             Log.e("myDataSnapshot...getKey()",myDataSnapshot.getKey());
                             Log.e("myDataSnapshot...getValue()", String.valueOf(myDataSnapshot.getValue()));
-                            data = myDataSnapshot.getValue(Data.class);
+                            data = myDataSnapshot.getValue(DataAlltypes.class);
                             csTime = myDataSnapshot.getKey();
                             csMess = data.getHumid();
 //                            Log.e("csTime[0]", String.valueOf(csTime[0]));
@@ -189,23 +223,42 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 int humid = Integer.parseInt(humidTextView.getText().toString());
+                int K = Integer.parseInt(KTextView.getText().toString());
+                int P = Integer.parseInt(PTextView.getText().toString());
+                int N = Integer.parseInt(NTextView.getText().toString());
+                int Temp = Integer.parseInt(TempTextView.getText().toString());
+                int SolidHumid = Integer.parseInt(SolidHumidTextView.getText().toString());
+                int SolidTemp = Integer.parseInt(SolidTempTextView.getText().toString());
+                int O2 = Integer.parseInt(O2TextView.getText().toString());
+                int CO2 = Integer.parseInt(CO2TextView.getText().toString());
+
                 Log.e("humid", String.valueOf(humid));
 
+
 //                RefToHumid.child()
-                Data data_insert = new Data(humid);
+                DataAlltypes data_insert = new DataAlltypes(humid, CO2, K, N, O2, P, SolidHumid, SolidTemp, Temp);
 //                Log.e("time", String.valueOf(data_insert));
 
                 // firebase 在 insert data 時, 需要 getter
                 RefToDay.child(time).setValue(data_insert);
 
                 humidTextView.setText("");
-                retrieveData();
+                TempTextView.setText("");
+                SolidTempTextView.setText("");
+                SolidHumidTextView.setText("");
+                CO2TextView.setText("");
+                O2TextView.setText("");
+                NTextView.setText("");
+                PTextView.setText("");
+                KTextView.setText("");
+
+//                retrieveData();
                 hideSoftKeyboard(insertBtn);
             }
         });
     }
 
-    private void retrieveData(){
+    private void retrieveData(String type){
         RefToDay.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -217,9 +270,38 @@ public class MainActivity extends AppCompatActivity {
                         Log.e("myDataSnapshot", String.valueOf(myDataSnapshot));
                         Log.e("myDataSnapshot.getKey()",myDataSnapshot.getKey());
                         Log.e("myDataSnapshot.getValue()", String.valueOf(myDataSnapshot.getValue()));
-                        data = myDataSnapshot.getValue(Data.class); // wrong
+                        data = myDataSnapshot.getValue(DataAlltypes.class); // wrong
                         xAxisValue.add(myDataSnapshot.getKey());
-                        dataVals.add(new Entry(count, data.getHumid()));
+                        switch (type){
+                            case "humid":
+                                dataVals.add(new Entry(count, data.getHumid()));
+                                break;
+                            case "CO2":
+                                dataVals.add(new Entry(count, data.getCO2()));
+                                break;
+                            case "O2":
+                                dataVals.add(new Entry(count, data.getO2()));
+                                break;
+                            case "temp":
+                                dataVals.add(new Entry(count, data.getTemp()));
+                                break;
+                            case "K":
+                                dataVals.add(new Entry(count, data.getK()));
+                                break;
+                            case "N":
+                                dataVals.add(new Entry(count, data.getN()));
+                                break;
+                            case "P":
+                                dataVals.add(new Entry(count, data.getP()));
+                                break;
+                            case "solid_temp":
+                                dataVals.add(new Entry(count, data.getSoil_temp()));
+                                break;
+                            case "solid_humid":
+                                dataVals.add(new Entry(count, data.getSoil_humid()));
+                                break;
+                        }
+//                        dataVals.add(new Entry(count, data.getHumid()));
                         count += 1;
                     }
                     showChart(dataVals);
@@ -255,7 +337,7 @@ public class MainActivity extends AppCompatActivity {
 //                        Log.e("myDataSnapshot1", String.valueOf(myDataSnapshot));
 //                        Log.e("myDataSnapshot1.getKey()",myDataSnapshot.getKey());
 //                        Log.e("myDataSnapshot1.getValue()", String.valueOf(myDataSnapshot.getValue()));
-                        data = myDataSnapshot.getValue(Data.class); // wrong
+                        data = myDataSnapshot.getValue(DataAlltypes.class); // wrong
                         dataValsMonth.add(new Entry(count_month, data.getHumid()));
                         count_month += 1;
 //                        Log.e("Ref.getParent();", String.valueOf(Ref.getKey()));
@@ -342,7 +424,7 @@ public class MainActivity extends AppCompatActivity {
         Log.e("show_xAxisValue", String.valueOf(xAxisValue.size()));
         Log.e("show_dataVals", String.valueOf(dataVals.size()));
         lineDataSet.setValues(dataVals);
-        lineDataSet.setLabel("Humid");
+        lineDataSet.setLabel(type);
         iLineDataSets.clear();
         iLineDataSets.add(lineDataSet);
         Log.e("iLineDataSets", String.valueOf(iLineDataSets));
@@ -358,4 +440,5 @@ public class MainActivity extends AppCompatActivity {
         InputMethodManager imm =(InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
+
 }

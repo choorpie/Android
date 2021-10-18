@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">firebase_landis</string>
+    <string-array name="spnDataList">
+        <item>humid</item>
+        <item>CO2</item>
+        <item>O2</item>
+        <item>temp</item>
+        <item>K</item>
+        <item>N</item>
+        <item>P</item>
+        <item>soil_temp</item>
+        <item>soil_humid</item>
+    </string-array>
 </resources>
