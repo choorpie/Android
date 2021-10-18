@@ -197,6 +197,13 @@
                 android:text="Now" />
 
         </LinearLayout>
+        <TextView
+            android:id="@+id/dmTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:textColor="@color/cardview_dark_background"
+            android:text=""/>
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/lineChartView"

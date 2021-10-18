@@ -46,6 +46,7 @@ import java.util.TimeZone;
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     EditText humidTextView, CO2TextView, O2TextView, KTextView, NTextView, PTextView, SolidHumidTextView, SolidTempTextView, TempTextView;
+    TextView dmTextView;
     Spinner spnData;
     Button insertBtn, inquireBtn, testBtn, nowBtn;
     LineChart lineChart;
@@ -56,9 +57,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     String type = "humid";
     String csTime;
     Integer csMess;
-    final ArrayList<Entry> dataVals = new ArrayList<Entry>();
-    final ArrayList<Entry> dataValsMonth = new ArrayList<Entry>();
-    final ArrayList<String> xAxisValue = new ArrayList<>();
+    ArrayList<Entry> dataVals = new ArrayList<Entry>();
+    ArrayList<Entry> dataValsMonth = new ArrayList<Entry>();
+    ArrayList<String> xAxisValue = new ArrayList<>();
     int count_month;
     // create object of firebase database
     FirebaseDatabase firebaseDatabase;
@@ -92,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         PTextView = findViewById(R.id.PTextView);
         SolidHumidTextView = findViewById(R.id.SolidHumidTextView);
         SolidTempTextView = findViewById(R.id.SolidTempTextView);
+        dmTextView = findViewById(R.id.dmTextView);
 
 
         insertBtn = findViewById(R.id.btnInsert);
@@ -126,6 +128,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         type = parent.getItemAtPosition(position).toString();
+        inquireNow();
     }
 
     @Override
@@ -150,7 +153,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         inquireBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                retrieveData(type);
+                retrieveData();
                 hideSoftKeyboard(inquireBtn);
             }
         });
@@ -169,7 +172,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         nowBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 RefToDay.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -178,8 +180,37 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                             Log.e("myDataSnapshot...getKey()",myDataSnapshot.getKey());
                             Log.e("myDataSnapshot...getValue()", String.valueOf(myDataSnapshot.getValue()));
                             data = myDataSnapshot.getValue(DataAlltypes.class);
+                            Log.i("type.....", String.valueOf(type));
+                            switch (type){
+                                case "humid":
+                                    csMess = data.getHumid();
+                                    break;
+                                case "CO2":
+                                    csMess = data.getCO2();
+                                    break;
+                                case "O2":
+                                    csMess = data.getO2();
+                                    break;
+                                case "temp":
+                                    csMess = data.getTemp();
+                                    break;
+                                case "K":
+                                    csMess = data.getK();
+                                    break;
+                                case "N":
+                                    csMess = data.getN();
+                                    break;
+                                case "P":
+                                    csMess = data.getP();
+                                    break;
+                                case "solid_temp":
+                                    csMess = data.getSoil_temp();
+                                    break;
+                                case "solid_humid":
+                                    csMess = data.getSoil_humid();
+                                    break;
+                            }
                             csTime = myDataSnapshot.getKey();
-                            csMess = data.getHumid();
 //                            Log.e("csTime[0]", String.valueOf(csTime[0]));
 //                            Log.e("csMess[0]", String.valueOf(csMess));
                         }
@@ -192,9 +223,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
                 Log.e("data", String.valueOf(data));
                 Log.e("csTime", String.valueOf(csTime));
+                Log.e("csMess", String.valueOf(csMess));
 
                 AlertDialog dialog = new AlertDialog.Builder(MainActivity.this)
-                        .setTitle("目前濕度：")
+                        .setTitle("最新一筆：" + type)
                         .setMessage(csTime + "           " + csMess)
                         .setPositiveButton("確認", new DialogInterface.OnClickListener() {
                             @Override
@@ -216,7 +248,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             public void onClick(View v) {
                 getCurrentTime();
 
-                if(humidTextView.getText().toString().matches("")){
+                if(humidTextView.getText().toString().matches("") || KTextView.getText().toString().matches("") ||
+                        SolidHumidTextView.getText().toString().matches("") || SolidTempTextView.getText().toString().matches("") ||
+                        PTextView.getText().toString().matches("") || NTextView.getText().toString().matches("") ||
+                        TempTextView.getText().toString().matches("") ||O2TextView.getText().toString().matches("") ||
+                        CO2TextView.getText().toString().matches("")
+                ){
                     Toast toast = Toast.makeText(MainActivity.this, "欄位不能為空", Toast.LENGTH_LONG);
                     toast.show();
                     return;
@@ -252,16 +289,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 PTextView.setText("");
                 KTextView.setText("");
 
-//                retrieveData();
+                retrieveData();
                 hideSoftKeyboard(insertBtn);
             }
         });
     }
 
-    private void retrieveData(String type){
+    private void retrieveData(){
         RefToDay.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                dmTextView.setText("DAY");
                 if(snapshot.hasChildren()){
                     dataVals.clear();
                     xAxisValue.clear();
@@ -301,18 +339,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                                 dataVals.add(new Entry(count, data.getSoil_humid()));
                                 break;
                         }
-//                        dataVals.add(new Entry(count, data.getHumid()));
                         count += 1;
                     }
                     showChart(dataVals);
-//                    Log.e("dataVals", String.valueOf(dataVals));
-//                    Log.e("xAxisValue", String.valueOf(xAxisValue));
-
-//                    if(!dataVals.isEmpty()){
-//                        Log.e("dataVals", String.valueOf(dataVals));
-//                        Log.e("xAxisValue", String.valueOf(xAxisValue));
-//                        showChart(dataVals);
-//                    }
 
                 }else{
                     lineChart.clear();
@@ -331,14 +360,43 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                xAxisValue.clear();
+                dmTextView.setText("MONTH");
                 if(snapshot.hasChildren()){
                     for(DataSnapshot myDataSnapshot: snapshot.getChildren()){
 //                        Log.e("myDataSnapshot1", String.valueOf(myDataSnapshot));
 //                        Log.e("myDataSnapshot1.getKey()",myDataSnapshot.getKey());
 //                        Log.e("myDataSnapshot1.getValue()", String.valueOf(myDataSnapshot.getValue()));
                         data = myDataSnapshot.getValue(DataAlltypes.class); // wrong
-                        dataValsMonth.add(new Entry(count_month, data.getHumid()));
+//                        dataValsMonth.add(new Entry(count_month, data.getHumid()));
+                        switch (type){
+                            case "humid":
+                                dataValsMonth.add(new Entry(count_month, data.getHumid()));
+                                break;
+                            case "CO2":
+                                dataValsMonth.add(new Entry(count_month, data.getCO2()));
+                                break;
+                            case "O2":
+                                dataValsMonth.add(new Entry(count_month, data.getO2()));
+                                break;
+                            case "temp":
+                                dataValsMonth.add(new Entry(count_month, data.getTemp()));
+                                break;
+                            case "K":
+                                dataValsMonth.add(new Entry(count_month, data.getK()));
+                                break;
+                            case "N":
+                                dataValsMonth.add(new Entry(count_month, data.getN()));
+                                break;
+                            case "P":
+                                dataValsMonth.add(new Entry(count_month, data.getP()));
+                                break;
+                            case "solid_temp":
+                                dataValsMonth.add(new Entry(count_month, data.getSoil_temp()));
+                                break;
+                            case "solid_humid":
+                                dataValsMonth.add(new Entry(count_month, data.getSoil_humid()));
+                                break;
+                        }
                         count_month += 1;
 //                        Log.e("Ref.getParent();", String.valueOf(Ref.getKey()));
                         xAxisValue.add(Ref.getKey());
